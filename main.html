@@ -4,11 +4,75 @@
 
 <head>
 	<link rel="stylesheet" href="styles.css">
+
+	<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  
+  #verification_heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  #verification_subtext {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  .code-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .code {
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    text-align: center;
+    margin: 0 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+  }
+</style>
 </head>
 
 <body>
-	<!-- the entire body must be written by student -->
+	<h1 id="verification_heading">OTP Verification</h1>
+  <h2 id="verification_subtext">Please enter the 6-digit OTP sent to your mobile number</h2>
+  <div class="code-container">
+    <input type="text" class="code" maxlength="1">
+    <input type="text" class="code" maxlength="1">
+    <input type="text" class="code" maxlength="1">
+    <input type="text" class="code" maxlength="1">
+    <input type="text" class="code" maxlength="1">
+    <input type="text" class="code" maxlength="1">
+  </div>
     <script type="text/javascript" src="./script.js">
+		 const inputs = document.querySelectorAll('.code');
+
+    inputs.forEach((input, index) => {
+      input.addEventListener('input', (e) => {
+        if (input.value.length === 1) {
+          if (index < inputs.length - 1) {
+            inputs[index + 1].focus();
+          }
+        }
+      });
+
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Backspace') {
+          if (input.value.length === 0 && index > 0) {
+            inputs[index - 1].focus();
+          }
+        }
+      });
+    });
 </script>
 
 </body>
